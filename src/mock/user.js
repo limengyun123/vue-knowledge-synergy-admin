@@ -1,7 +1,7 @@
 // mock数据
 export default {
     login_result_suc: (param)=>{
-        console.log(param.body);
+        //console.log(param.body);
         return{
             code: 200,
             msg: "登录成功",

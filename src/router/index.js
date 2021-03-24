@@ -21,6 +21,21 @@ const routes = [
 				component: ()=> import('../views/main.vue'),
 			},
 			{
+				path: 'system',
+				component: ()=> import('../views/system/index.vue'),
+				redirect: '/system/systemInfo',
+				children:[
+					{
+						path: 'systemInfo',
+						component: ()=> import('../views/system/systemInfo.vue'),
+					},
+					{
+						path: 'server',
+						component: ()=> import('../views/system/server.vue'),
+					}
+				]
+			},
+			{
 				path: 'user',
 				component: ()=> import('../views/user/index.vue'),
 				redirect: '/user/client',
@@ -36,11 +51,18 @@ const routes = [
 				]
 			},
 			{
-				path: 'log',
-				component: ()=> import('../views/log.vue'),
+				path: 'team',
+				component: ()=> import('../views/team/team.vue'),
 			},
+			{
+				path: 'resource',
+				component: ()=> import('../views/resource/resource.vue'),
+			},
+			
+
 		]
-	}
+	},
+	{ path: '*', name: 'error', component: () => import('../components/error.vue') }, 
 ]
 
 	const router = new VueRouter({
