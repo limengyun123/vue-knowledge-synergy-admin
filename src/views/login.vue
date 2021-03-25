@@ -99,7 +99,7 @@ export default {
 <style scoped>
 /* 毛玻璃背景 */
 .container::before{
-	background:url("https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2140868464,3705580502&fm=26&gp=0.jpg") 0 / cover fixed;
+	background:url('~@/assets/img/bg_0.jpg') 0 / cover fixed;
     content:'';
 	position:absolute;
 	top:0;

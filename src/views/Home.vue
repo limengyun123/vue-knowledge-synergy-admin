@@ -25,7 +25,7 @@
 			</el-menu>
 		</el-aside>
 		<el-container>
-			<el-header>
+			<el-header class="admin_end-head">
 				<span class="fold-button">
 					<span v-if="isCollapse">
 						<span class='el-icon-s-unfold' @click='reverteNavState'></span>
@@ -38,7 +38,7 @@
 				<span class="avatar">
                     <el-dropdown @command="handleCommand">
                         <span class="el-dropdown-link">
-                            <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
+                            <el-avatar :src="require('@/assets/img/avatar_1.png')"></el-avatar>
                         </span>
                         <el-dropdown-menu slot="dropdown">
                             <el-dropdown-item command="personal">个人档案</el-dropdown-item>
@@ -51,8 +51,8 @@
 			</el-header>
 			<el-main class='admin-end-body'>
 				<router-view></router-view>
-				<el-footer>Footer</el-footer>
-			</el-main>	
+				<el-footer>Footer</el-footer>	
+			</el-main>
 		</el-container>
 	</el-container>
 </template>
@@ -105,6 +105,14 @@ export default {
 
 .avatar{
 	float: right;
+}
+
+.admin_end-head{
+	border-bottom: lightblue solid 0.1rem;
+    box-shadow: lightblue 0 0 0.5rem 0 ;
+    font-size: 2rem;
+    padding: 0.6rem 1rem;
+	margin-bottom: 0.5rem;
 }
 
 .admin-end-body{
