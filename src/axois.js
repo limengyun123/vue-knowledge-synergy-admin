@@ -9,7 +9,6 @@ axios.interceptors.request.use((config)=>{
 });
 
 axios.interceptors.response.use((response)=>{
-    console.log("响应拦截");
     let result = response.data;
     if(result.code === 200) return Promise.resolve(result);
     else return Promise.reject(result.msg);

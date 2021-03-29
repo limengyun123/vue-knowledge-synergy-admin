@@ -7,7 +7,7 @@
                     <el-option label="用户名" value="userName"></el-option>
                     <el-option label="姓名" value="actualName"></el-option>
                     <el-option label="性别" value="sex"></el-option>
-                    <el-option label="电话号码" value="mobile"></el-option>
+                    <el-option label="电话号码" value="phone"></el-option>
                     <el-option label="邮箱" value="email"></el-option>
                     <el-option label="是否在线" value="status"></el-option>
                     <el-option label="是否激活" value="isActive"></el-option>
@@ -19,8 +19,13 @@
             <el-table-column fixed prop="userId" label="用户ID" width="80"></el-table-column>
             <el-table-column prop="userName" label="用户名" width="150"></el-table-column>
             <el-table-column prop="actualName" label="姓名" width="80"></el-table-column>
-            <el-table-column prop="sex" label="性别" width="50"></el-table-column>
-            <el-table-column prop="mobile" label="电话号码" width="120"></el-table-column>
+            <el-table-column prop="sex" label="性别" width="50">
+                <template slot-scope="scope">
+                    <span v-if="scope.row.sex">男</span>
+                    <span v-else>女</span>
+                </template>
+            </el-table-column>
+            <el-table-column prop="phone" label="电话号码" width="120"></el-table-column>
             <el-table-column prop="email" label="邮箱" width="180"></el-table-column>
             <el-table-column prop="registerTime" label="注册时间" width="140"></el-table-column>
             <el-table-column prop="status" label="在线" width="50" align="center">
@@ -30,7 +35,7 @@
             </el-table-column>
             <el-table-column fixed="right" label="激活" width="60">
                 <template slot-scope="scope">
-                    <el-switch v-model="scope.row.isActive" @change="changeStatus($event, scope.row)"  active-color="#13ce66" inactive-color="#ff4949"></el-switch>
+                    <el-switch v-model="scope.row.isActive" :active-value='1' :inactive-value='0' @change="changeStatus($event, scope.row)"  active-color="#13ce66" inactive-color="#ff4949"></el-switch>
                 </template>
             </el-table-column>
             <el-table-column fixed="right" label="警告" width="60" align="center">
@@ -77,6 +82,7 @@ export default {
     name: 'Client',
     data() {
         return {
+            test: 1,
             searchInput: '',
             searchMothod: '',
             paginationInfo:{
@@ -97,7 +103,7 @@ export default {
     },
     methods: {
         getUsers(){
-            getUsersApi({...this.paginationInfo, method: this.searchMothod, content: this.searchInput}).then((result)=>{
+            getUsersApi({currentPage:this.paginationInfo.currentPage, pageSize:this.paginationInfo.pageSize,method: this.searchMothod, content: this.searchInput}).then((result)=>{
                 this.paginationInfo.totalNum = result.data.totalNum;
                 this.userData = result.data.users;
             }).catch((reason)=>{
@@ -134,7 +140,7 @@ export default {
                 else message = '冻结成功';
                 this.$message({type: 'success', message });
             }).catch(() => {
-                row.isActive = row.isActive ? false : true;
+                row.isActive = row.isActive ? 0 : 1;
                 this.$message({ type: 'info', message: '您已取消操作' });
           });
         },

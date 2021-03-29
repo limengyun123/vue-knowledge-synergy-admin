@@ -17,3 +17,9 @@ import userApi from './user'
 
  Mock.mock("http://localhost:8081/user/freezeUser", "post", userApi.freeze_user_suc);
  //  Mock.mock("http://localhost:8081/user/freezeUser", "post", userApi.freeze_user_fai);
+
+ Mock.mock("http://localhost:8081/user/getAdmins", "post", userApi.get_admins_suc);
+ //  Mock.mock("http://localhost:8081/user/getAdmins", "post", userApi.get_admins_fai);
+
+ Mock.mock("http://localhost:8081/user/addAdmin", "post", userApi.add_admin_suc);
+//   Mock.mock("http://localhost:8081/user/addAdmin", "post", userApi.add_admin_fai);

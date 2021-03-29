@@ -8,7 +8,7 @@ export default {
             headers:{'authorization': 'hfos93789yhef139hfw3827rhg8'},
             data: {
                 actualName: '赵天泽',
-                telephone: '17305827492',
+                phone: '17305827492',
                 superLevel: true
             }
         };

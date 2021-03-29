@@ -14,7 +14,7 @@
 				<el-submenu index="2">
 					<template slot="title"><i class="el-icon-location"></i><span slot="title">用户管理</span></template>
 					<el-menu-item index="/main/user/client"><i class="el-icon-document"></i>客户管理</el-menu-item>
-					<el-menu-item index="/main/user/admin" disabled><i class="el-icon-setting"></i>管理员管理</el-menu-item>
+					<el-menu-item index="/main/user/admin"><i class="el-icon-setting"></i>管理员管理</el-menu-item>
 				</el-submenu>
 				<el-menu-item index="/main/team">
 					<i class="el-icon-location"></i><span slot="title">团队管理</span>

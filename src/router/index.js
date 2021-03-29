@@ -62,6 +62,7 @@ const routes = [
 
 		]
 	},
+	{ path: '/user/addAdmin', name: 'addAdmin', component: () => import('../views/user/addAdmin.vue') }, 
 	{ path: '*', name: 'error', component: () => import('../components/error.vue') }, 
 ]
 
