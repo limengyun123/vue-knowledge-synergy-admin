@@ -58,6 +58,8 @@
 </template>
 
 <script>
+import {logoutApi} from '../api/login';
+
 // @ is an alias to /src
 export default {
 	name: 'Home',
@@ -90,8 +92,19 @@ export default {
 				case 'English':
 					break;
 				default:
-					this.$store.commit('REMOVE_INFO');
-					this.$router.push('/');
+					logoutApi().then((result)=>{
+						this.$message({
+							type: 'success',
+							duration: 1000,
+							message: result.msg,
+							onClose: ()=>{
+								this.$store.commit('REMOVE_INFO');
+								this.$router.push('/');
+							}
+						})
+					}).catch((reason)=>{
+						this.$message.error(reason);
+					})
 			}
 		},
 	}

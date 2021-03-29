@@ -110,9 +110,6 @@ export default {
                 this.$message.error(reason);
             })
         },
-        deleteRow(index, rows) {
-            rows.splice(index, 1);
-        },
         handleSizeChange(val){
             this.paginationInfo.pageSize = val;
             this.getUsers();
@@ -153,6 +150,7 @@ export default {
         },
         handleWarning(e){
             console.log(e);
+            this.chatWithChosen = e;
             this.showDrawer=true;
         },
         sendMessage(){
@@ -170,7 +168,6 @@ export default {
         async pushMessage(){
             let time = new Date();
             await this.messageRecord.push({
-                //senderId: this.getUserId, 
                 sendTime: time, 
                 content: this.chatContent
             });

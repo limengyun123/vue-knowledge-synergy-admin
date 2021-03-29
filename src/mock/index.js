@@ -1,6 +1,6 @@
-import Mock from 'mockjs'
-import loginApi from './login'
-import userApi from './user'
+import Mock from 'mockjs';
+import loginApi from './login';
+import userApi from './user';
 
 /**
  * Mock.mock( rurl, rtype, template )
@@ -11,6 +11,9 @@ import userApi from './user'
 
  Mock.mock("http://localhost:8081/login", "post", loginApi.login_result_suc);
 //  Mock.mock("http://localhost:8081/login", "post", loginApi.login_result_fai);
+
+Mock.mock("http://localhost:8081/logout", "post", loginApi.logout_result_suc);
+//  Mock.mock("http://localhost:8081/logout", "post", loginApi.logout_result_fai);
 
  Mock.mock("http://localhost:8081/user/getUsers", "post", userApi.get_users_suc);
  //  Mock.mock("http://localhost:8081/user/getUsers", "post", userApi.get_users_fai);

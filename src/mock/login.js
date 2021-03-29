@@ -9,15 +9,26 @@ export default {
             data: {
                 actualName: '赵天泽',
                 phone: '17305827492',
-                superLevel: true
+                superLevel: 1
             }
         };
     },
     login_result_fai:()=> {
         return {
-            code: 400,
+            code: 500,
             msg: "账户名或密码错误",
-            data: {}
+        }
+    },
+    logout_result_suc: (param)=>{
+        return{
+            code: 200,
+            msg: "退出成功",
+        };
+    },
+    logout_result_fai:()=> {
+        return {
+            code: 500,
+            msg: "退出失败",
         }
     }
 }

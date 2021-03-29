@@ -65,8 +65,6 @@ export default {
     get_admins_suc: (param)=>{
         let prm = JSON.parse(param.body);
         let cp = prm.currentPage, ps = prm.pageSize;
-        console.log(param.body);
-        // let actualName = prm.actualName, uId = prm.uId;
         return {
             code: 200,
             msg: "获取成功",

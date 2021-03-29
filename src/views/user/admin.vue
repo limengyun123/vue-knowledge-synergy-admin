@@ -34,7 +34,7 @@
             </el-pagination>
         </div>
         <div v-else>
-            暂无用户信息
+            暂无管理员信息
         </div>
     </div>
 </template>
@@ -46,8 +46,6 @@ export default {
     name: 'Administrator',
     data() {
         return {
-            searchInput: '',
-            searchMothod: '',
             paginationInfo:{
                 totalNum: 0,
                 currentPage: 1,
@@ -62,15 +60,12 @@ export default {
     },
     methods: {
         getAdmins(){
-            getAdminsApi({...this.paginationInfo, method: this.searchMothod, content: this.searchInput}).then((result)=>{
+            getAdminsApi({currentPage:this.paginationInfo.currentPage, pageSize: this.paginationInfo.pageSize}).then((result)=>{
                 this.paginationInfo.totalNum = result.data.totalNum;
                 this.adminData = result.data.admins;
             }).catch((reason)=>{
                 this.$message.error(reason);
             })
-        },
-        deleteRow(index, rows) {
-            rows.splice(index, 1);
         },
         handleSizeChange(val){
             this.paginationInfo.pageSize = val;
@@ -111,15 +106,6 @@ export default {
 </script>
 
 <style scoped>
-    .input-with-select {
-        width: 35rem;
-        background-color: #fff;
-    }
-
-    .el-select{
-        width: 9rem;
-    }
-
     .pagination{
         margin-top: 3rem;
         text-align: center;

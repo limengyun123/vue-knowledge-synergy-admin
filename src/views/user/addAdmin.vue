@@ -18,7 +18,7 @@
             <el-form-item label="邮箱" prop="email">
                 <el-input v-model="adminInfo.email"></el-input>
             </el-form-item>
-            <el-form-item label="超级权限" prop="sex">
+            <el-form-item label="超级权限" prop="superLevel">
                 <el-radio v-model="adminInfo.superLevel" :label='1'>是</el-radio>
                 <el-radio v-model="adminInfo.superLevel" :label='0'>否</el-radio>
             </el-form-item>
