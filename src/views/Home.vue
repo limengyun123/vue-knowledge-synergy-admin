@@ -4,23 +4,23 @@
 			<div>LOGO 知识协同管理端</div>
 			<el-menu router default-active="$route.path" class="el-menu-vertical-demo"  :collapse="isCollapse">
 				<el-menu-item index="/main" route='/main'>
-					<i class="el-icon-menu"></i><span slot="title">主页</span>
+					<i class="el-icon-s-home"></i><span slot="title">主页</span>
 				</el-menu-item>
 				<el-submenu index="1">
-					<template slot="title"><i class="el-icon-location"></i><span slot="title">系统管理</span></template>
-					<el-menu-item index="/main/system/systemInfo"><i class="el-icon-document"></i>系统实时信息</el-menu-item>
-					<el-menu-item index="/main/system/server"><i class="el-icon-setting" disabled></i>服务器管理</el-menu-item>
+					<template slot="title"><i class="el-icon-set-up"></i><span slot="title">系统管理</span></template>
+					<el-menu-item index="/main/system/systemInfo"><i class="el-icon-s-marketing"></i>系统实时信息</el-menu-item>
+					<el-menu-item index="/main/system/server"><i class="el-icon-s-platform" disabled></i>服务器管理</el-menu-item>
 				</el-submenu>
 				<el-submenu index="2">
-					<template slot="title"><i class="el-icon-location"></i><span slot="title">用户管理</span></template>
-					<el-menu-item index="/main/user/client"><i class="el-icon-document"></i>客户管理</el-menu-item>
-					<el-menu-item index="/main/user/admin"><i class="el-icon-setting"></i>管理员管理</el-menu-item>
+					<template slot="title"><i class="el-icon-user"></i><span slot="title">用户管理</span></template>
+					<el-menu-item index="/main/user/client"><i class="el-icon-user-solid"></i>客户管理</el-menu-item>
+					<el-menu-item index="/main/user/admin"><i class="el-icon-s-custom"></i>管理员管理</el-menu-item>
 				</el-submenu>
 				<el-menu-item index="/main/team">
-					<i class="el-icon-location"></i><span slot="title">团队管理</span>
+					<i class="el-icon-coordinate"></i><span slot="title">团队管理</span>
 				</el-menu-item>
 				<el-menu-item index="/main/resource">
-					<i class="el-icon-document"></i><span slot="title">资源管理</span>
+					<i class="el-icon-folder"></i><span slot="title">资源管理</span>
 				</el-menu-item>				
 			</el-menu>
 		</el-aside>
@@ -122,7 +122,7 @@ export default {
 
 .admin_end-head{
 	border-bottom: lightblue solid 0.1rem;
-    box-shadow: lightblue 0 0 0.5rem 0 ;
+    box-shadow: lightblue 0.5rem 0 0.5rem 0 ;
     font-size: 2rem;
     padding: 0.6rem 1rem;
 	margin-bottom: 0.5rem;
@@ -132,5 +132,6 @@ export default {
 	height: calc(99vh - 5rem);
 	overflow: scroll;
 }
+
 </style>
 

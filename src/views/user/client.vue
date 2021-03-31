@@ -35,7 +35,7 @@
             </el-table-column>
             <el-table-column fixed="right" label="激活" width="60">
                 <template slot-scope="scope">
-                    <el-switch v-model="scope.row.isActive" :active-value='1' :inactive-value='0' @change="changeStatus($event, scope.row)"  active-color="#13ce66" inactive-color="#ff4949"></el-switch>
+                    <el-switch v-model="scope.row.isActive" @change="changeStatus($event, scope.row)"  active-color="#13ce66" inactive-color="#ff4949"></el-switch>
                 </template>
             </el-table-column>
             <el-table-column fixed="right" label="警告" width="60" align="center">
@@ -82,7 +82,6 @@ export default {
     name: 'Client',
     data() {
         return {
-            test: 1,
             searchInput: '',
             searchMothod: '',
             paginationInfo:{
@@ -137,13 +136,16 @@ export default {
                 else message = '冻结成功';
                 this.$message({type: 'success', message });
             }).catch(() => {
-                row.isActive = row.isActive ? 0 : 1;
+                row.isActive = row.isActive ? false : true;
                 this.$message({ type: 'info', message: '您已取消操作' });
           });
         },
         handleClose(done) {
             this.$confirm('确认关闭？')
             .then(_ => {
+                this.chatWithChosen = 0;
+                this.chatContent = '';
+                this.messageRecord = [];
                 done();
             })
             .catch(_ => {});

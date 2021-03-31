@@ -9,8 +9,8 @@
                 <el-input v-model="adminInfo.actualName" autocomplete="off"></el-input>
             </el-form-item>
             <el-form-item label="性别" prop="sex">
-                <el-radio v-model="adminInfo.sex" :label='1'>男</el-radio>
-                <el-radio v-model="adminInfo.sex" :label='0'>女</el-radio>
+                <el-radio v-model="adminInfo.sex" :label="true">男</el-radio>
+                <el-radio v-model="adminInfo.sex" :label="false">女</el-radio>
             </el-form-item>
             <el-form-item label="手机号码" prop="phone">
                 <el-input v-model="adminInfo.phone"></el-input>
@@ -19,8 +19,8 @@
                 <el-input v-model="adminInfo.email"></el-input>
             </el-form-item>
             <el-form-item label="超级权限" prop="superLevel">
-                <el-radio v-model="adminInfo.superLevel" :label='1'>是</el-radio>
-                <el-radio v-model="adminInfo.superLevel" :label='0'>否</el-radio>
+                <el-radio v-model="adminInfo.superLevel" :label="true">是</el-radio>
+                <el-radio v-model="adminInfo.superLevel" :label="false">否</el-radio>
             </el-form-item>
             <el-form-item label="密码" prop="password">
                 <el-input type="password" v-model="adminInfo.password"></el-input>
@@ -49,10 +49,10 @@ export default {
             adminInfo: {
                 userName: '',
                 actualName: '',
-                sex: 1,
+                sex: true,
                 phone: '',
                 email: '',
-                superLevel: 1,
+                superLevel: true,
                 password: '',
                 ensurePassword: ''
             },

@@ -16,7 +16,7 @@
                 <el-table-column prop="email" label="邮箱" width="180"></el-table-column>
                 <el-table-column fixed="right" label="超级权限" width="120">
                     <template slot-scope="scope">
-                        <el-switch v-model="scope.row.superLevel" :active-value='1' :inactive-value='0' @change="changeStatus($event, scope.row)"  active-color="#13ce66" inactive-color="#ff4949"></el-switch>
+                        <el-switch v-model="scope.row.superLevel" @change="changeStatus($event, scope.row)"  active-color="#13ce66" inactive-color="#ff4949"></el-switch>
                 </template>
                 </el-table-column>
             </el-table>
@@ -77,7 +77,7 @@ export default {
         },
         changeStatus(callback, row) {
             if(row.userId==1){
-                row.superLevel = 1;
+                row.superLevel = true;
                 this.$message({type: 'warning', message:'禁止操作'});
                 return ;
             }
@@ -96,7 +96,7 @@ export default {
                 else message = '取消成功';
                 this.$message({type: 'success', message });
             }).catch(() => {
-                row.superLevel = row.superLevel ? 0 : 1;
+                row.superLevel = row.superLevel ? false : true;
                 this.$message({ type: 'info', message: '您已取消操作' });
           });
         },

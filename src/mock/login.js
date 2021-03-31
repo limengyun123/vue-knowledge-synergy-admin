@@ -9,7 +9,7 @@ export default {
             data: {
                 actualName: '赵天泽',
                 phone: '17305827492',
-                superLevel: 1
+                superLevel: true
             }
         };
     },
