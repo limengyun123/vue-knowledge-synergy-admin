@@ -165,7 +165,7 @@ export default {
         updateCharts(chart, param){
             chart.setOption({
                 title: { text: param.title },
-                tooltip:{ trigger: 'xAxis' },
+                tooltip:{ trigger: 'axis' },
                 legend: { data: param.legend},
                 xAxis: param.xAxis,
                 yAxis: {},
