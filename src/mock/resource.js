@@ -1,15 +1,15 @@
 const resources=[
-    { rId: 1, rName: "立项文档", rAuthorId: '234', rAuthorName: '赵浩', rUploadTime: '2020-03-22 12:45', rContent: '', rSize: '12K', rReview: 0, rIsDeleted: false },
-    { rId: 2, rName: "项目计划", rAuthorId: '41514', rAuthorName: '钱全有', rUploadTime: '2020-03-25 12:45', rContent: '', rSize: '12K', rReview: 1, rIsDeleted: false },
-    { rId: 3, rName: "需求文档", rAuthorId: '12414', rAuthorName: '孙香', rUploadTime: '2020-04-01 12:45', rContent: '', rSize: '12K',rReview: 2, rIsDeleted: false },
-    { rId: 4, rName: "系统设计", rAuthorId: '1242', rAuthorName: '李志鹏', rUploadTime: '2020-4-12 12:45', rContent: '', rSize: '12K', rReview: 0, rIsDeleted: false },
-    { rId: 5, rName: "源码", rAuthorId: '2456', rAuthorName: '周欣', rUploadTime: '2020-04-22 12:45', rContent: '', rSize: '12K', rReview: 1, rIsDeleted: false },
-    { rId: 6, rName: "项目关闭总结报告", rAuthorId: '12424', rAuthorName: '吴名', UploadTime: '2020-05-01 12:45', rContent: '', rSize: '12K', rReview: 2, rIsDeleted: false },
-    { rId: 7, rName: "立项文档", rAuthorId: '234', rAuthorName: '赵浩', rUploadTime: '2020-03-22 12:45', rContent: '', rSize: '12K', rReview: 0, rIsDeleted: false },
-    { rId: 8, rName: "项目计划", rAuthorId: '41514', rAuthorName: '钱全有', rUploadTime: '2020-03-25 12:45', rContent: '', rSize: '12K', rReview: 1, rIsDeleted: false },
-    { rId: 9, rName: "需求文档", rAuthorId: '12414', rAuthorName: '孙香', rUploadTime: '2020-04-01 12:45', rContent: '', rSize: '12K', rReview: 2, rIsDeleted: false },
-    { rId: 10, rName: "系统设计", rAuthorId: '1242', rAuthorName: '李志鹏', rUploadTime: '2020-4-12 12:45', rContent: '', rSize: '12K', rReview: 0, rIsDeleted: false },
-    { rId: 11, rName: "源码", rAuthorId: '2456', rAuthorName: '周欣', rUploadTime: '2020-04-22 12:45', rContent: '', rSize: '12K', rReview: 1, rIsDeleted: false },
+    { resourceId: 1, resourceName: "立项文档", authorId: '234', userName: '赵浩', resourceCreateTime: '2020-03-22 12:45', resourceContent: '', resourceType: 1, resourceSize: '12KB', resourceReview: 0, resourceIsDeleted: false },
+    { resourceId: 2, resourceName: "项目计划", authorId: '41514', userName: '钱全有', resourceCreateTime: '2020-03-25 12:45', resourceContent: '', resourceType: 1, resourceSize: '12KB', resourceReview: 1, resourceIsDeleted: false },
+    { resourceId: 3, resourceName: "需求文档", authorId: '12414', userName: '孙香', resourceCreateTime: '2020-04-01 12:45', resourceContent: '', resourceType: 1, resourceSize: '12KB',resourceReview: 2, resourceIsDeleted: false },
+    { resourceId: 4, resourceName: "系统设计", authorId: '1242', userName: '李志鹏', resourceCreateTime: '2020-4-12 12:45', resourceContent: '', resourceType: 1, resourceSize: '12KB', resourceReview: 0, resourceIsDeleted: false },
+    { resourceId: 5, resourceName: "源码", authorId: '2456', userName: '周欣', resourceCreateTime: '2020-04-22 12:45', resourceContent: '', resourceType: 1, resourceSize: '12KB', resourceReview: 1, resourceIsDeleted: false },
+    { resourceId: 6, resourceName: "项目关闭总结报告", authorId: '12424', userName: '吴名', resourceCreateTime: '2020-05-01 12:45', resourceContent: '', resourceType: 1, resourceSize: '12KB', resourceReview: 2, resourceIsDeleted: false },
+    { resourceId: 7, resourceName: "立项文档", authorId: '234', userName: '赵浩', resourceCreateTime: '2020-03-22 12:45', resourceContent: '', resourceType: 1, resourceSize: '12KB', resourceReview: 0, resourceIsDeleted: false },
+    { resourceId: 8, resourceName: "项目计划", authorId: '41514', userName: '钱全有', resourceCreateTime: '2020-03-25 12:45', resourceContent: '', resourceType: 1, resourceSize: '12KB', resourceReview: 1, resourceIsDeleted: false },
+    { resourceId: 9, resourceName: "需求文档", authorId: '12414', userName: '孙香', resourceCreateTime: '2020-04-01 12:45', resourceContent: '', resourceType: 1, resourceSize: '12KB', resourceReview: 2, resourceIsDeleted: false },
+    { resourceId: 10, resourceName: "系统设计", authorId: '1242', userName: '李志鹏', resourceCreateTime: '2020-4-12 12:45', resourceContent: '', resourceType: 1, resourceSize: '12KB', resourceReview: 0, resourceIsDeleted: false },
+    { resourceId: 11, resourceName: "源码", authorId: '2456', userName: '周欣', resourceCreateTime: '2020-04-22 12:45', resourceContent: '', resourceType: 1, resourceSize: '12KB', resourceReview: 1, resourceIsDeleted: false },
 ]
 
 export default {

@@ -2,6 +2,7 @@ import Mock from 'mockjs';
 import loginApi from './login';
 import userApi from './user';
 import resourceApi from './resource';
+import teamApi from './team';
 
 /**
  * Mock.mock( rurl, rtype, template )
@@ -10,11 +11,11 @@ import resourceApi from './resource';
  * template:返回数据
  */ 
 
- Mock.mock("http://localhost:8081/login", "post", loginApi.login_result_suc);
-//  Mock.mock("http://localhost:8081/login", "post", loginApi.login_result_fai);
+ Mock.mock("http://localhost:8081/user/login", "post", loginApi.login_result_suc);
+//  Mock.mock("http://localhost:8081/user/login", "post", loginApi.login_result_fai);
 
-Mock.mock("http://localhost:8081/logout", "post", loginApi.logout_result_suc);
-//  Mock.mock("http://localhost:8081/logout", "post", loginApi.logout_result_fai);
+Mock.mock("http://localhost:8081/user/logout", "post", loginApi.logout_result_suc);
+//  Mock.mock("http://localhost:8081/user/logout", "post", loginApi.logout_result_fai);
 
  Mock.mock("http://localhost:8081/user/getUsers", "post", userApi.get_users_suc);
  //  Mock.mock("http://localhost:8081/user/getUsers", "post", userApi.get_users_fai);
@@ -33,3 +34,9 @@ Mock.mock("http://localhost:8081/resource/getResources", "post", resourceApi.get
 
 Mock.mock("http://localhost:8081/resource/auditResource", "post", resourceApi.audit_resource_suc);
   // Mock.mock("http://localhost:8081/resource/auditResource", "post", resourceApi.audit_resource_fai);
+  
+Mock.mock("http://localhost:8081/team/getTeams", "post", teamApi.get_teams_suc);
+//  Mock.mock("http://localhost:8081/team/getTeams", "post", teamApi.get_teams_fai);
+
+Mock.mock("http://localhost:8081/team/freezeTeam", "post", teamApi.freeze_team_suc);
+//  Mock.mock("http://localhost:8081/team/freezeTeam", "post", teamApi.freeze_team_fai);

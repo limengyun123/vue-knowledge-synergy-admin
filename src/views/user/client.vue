@@ -3,7 +3,7 @@
         <div>
             <el-input placeholder="请输入内容" v-model="searchInput" class="input-with-select">
                 <el-select v-model="searchMothod" slot="prepend" placeholder="请选择查询方式">
-                    <el-option label="用户ID" value="userId"></el-option>
+                    <el-option label="用户ID" value="id"></el-option>
                     <el-option label="用户名" value="userName"></el-option>
                     <el-option label="姓名" value="actualName"></el-option>
                     <el-option label="性别" value="sex"></el-option>
@@ -16,7 +16,7 @@
             </el-input>
         </div>
         <el-table :data="userData" style="width: 100%">
-            <el-table-column fixed prop="userId" label="用户ID" width="80"></el-table-column>
+            <el-table-column fixed prop="id" label="用户ID" width="80"></el-table-column>
             <el-table-column prop="userName" label="用户名" width="150"></el-table-column>
             <el-table-column prop="actualName" label="姓名" width="80"></el-table-column>
             <el-table-column prop="sex" label="性别" width="50">
@@ -40,7 +40,7 @@
             </el-table-column>
             <el-table-column fixed="right" label="警告" width="60" align="center">
                 <template slot-scope="scope">
-                    <span class="el-icon-warning" @click="handleWarning(scope.row.userId)"></span>
+                    <span class="el-icon-warning" @click="handleWarning(scope.row.id)"></span>
                 </template>
             </el-table-column>
         </el-table>

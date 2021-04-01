@@ -3,7 +3,7 @@
         <div><el-button><router-link to='/user/addAdmin'>添加管理员</router-link></el-button></div>
         <div v-if="adminData.length">
             <el-table :data="adminData" style="width: 100%">
-                <el-table-column fixed prop="userId" label="用户ID" width="80"></el-table-column>
+                <el-table-column fixed prop="id" label="用户ID" width="80"></el-table-column>
                 <el-table-column prop="userName" label="用户名" width="150"></el-table-column>
                 <el-table-column prop="actualName" label="姓名" width="80"></el-table-column>
                 <el-table-column prop="sex" label="性别" width="50">
@@ -76,7 +76,7 @@ export default {
             this.getAdmins();
         },
         changeStatus(callback, row) {
-            if(row.userId==1){
+            if(row.id==1){
                 row.superLevel = true;
                 this.$message({type: 'warning', message:'禁止操作'});
                 return ;
