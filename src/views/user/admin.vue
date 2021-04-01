@@ -24,7 +24,7 @@
                 @size-change="handleSizeChange"
                 @current-change="handleCurrentChange"
                 :current-page="paginationInfo.currentPage"
-                :page-sizes="[3,10, 20, 30, 40]"
+                :page-sizes="[10, 20, 30, 40]"
                 :page-size="paginationInfo.pageSize"
                 layout="total, sizes, prev, pager, next, jumper"
                 :total="paginationInfo.totalNum"

@@ -1,6 +1,7 @@
 import Mock from 'mockjs';
 import loginApi from './login';
 import userApi from './user';
+import resourceApi from './resource';
 
 /**
  * Mock.mock( rurl, rtype, template )
@@ -26,3 +27,9 @@ Mock.mock("http://localhost:8081/logout", "post", loginApi.logout_result_suc);
 
  Mock.mock("http://localhost:8081/user/addAdmin", "post", userApi.add_admin_suc);
 //   Mock.mock("http://localhost:8081/user/addAdmin", "post", userApi.add_admin_fai);
+
+Mock.mock("http://localhost:8081/resource/getResources", "post", resourceApi.get_resources_suc);
+//   Mock.mock("http://localhost:8081/resource/getResources", "post", resourceApi.get_resources_fai);
+
+Mock.mock("http://localhost:8081/resource/auditResource", "post", resourceApi.audit_resource_suc);
+  // Mock.mock("http://localhost:8081/resource/auditResource", "post", resourceApi.audit_resource_fai);
