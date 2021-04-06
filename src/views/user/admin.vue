@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import {getAdminsApi} from '../../api/user';
+import {getAdminsApi, updateLevelApi} from '../../api/user';
 
 export default {
     name: 'Administrator',
@@ -91,10 +91,15 @@ export default {
                 cancelButtonText: '取消',
                 type: 'warning'
             }).then(async () => {
-                let message = '';
-                if (row.superLevel) message = '添加成功';
-                else message = '取消成功';
-                this.$message({type: 'success', message });
+                
+                updateLevelApi({id:this.$store.state.userInfo.id}).then((result)=>{
+                    // let message = '';
+                    // if (row.superLevel) message = result.msg;
+                    // else message = '取消成功';
+                    this.$message({type: 'success', message:result.msg });
+                }).catch((reason)=>{
+                    this.$message.error(reason);
+                })             
             }).catch(() => {
                 row.superLevel = row.superLevel ? false : true;
                 this.$message({ type: 'info', message: '您已取消操作' });

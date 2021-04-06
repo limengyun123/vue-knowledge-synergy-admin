@@ -4,8 +4,8 @@
             <div class="title">知识协同管理端</div>
             <el-alert class="error-alert" :title="errorMessage" v-if="showError" type="error" show-icon></el-alert>
             <el-form :model="loginForm" :rules="rules" ref="loginForm" status-icon >
-                <el-form-item prop="userName">
-                    <el-input type="text" v-model="loginForm.userName" @focus="hideError" prefix-icon="el-icon-user-solid" placeholder="请输入用户名"></el-input>
+                <el-form-item prop="email">
+                    <el-input type="text" v-model="loginForm.email" @focus="hideError" prefix-icon="el-icon-user-solid" placeholder="请输入邮箱"></el-input>
                 </el-form-item>
                 <el-form-item prop="password">
                     <el-input type="text" v-model="loginForm.password" @focus="hideError" prefix-icon="el-icon-lock" :show-password=true auto-complete="off" placeholder="请输入密码"></el-input>
@@ -29,28 +29,15 @@ export default {
             errorMessage: '',
             loginForm: {
                 password: '',
-                userName: ''
+                email: ''
             },
             rules: {
-                userName: [
-                    {
-                        required: true,
-                        message: "请输入用户名",
-                        trigger: 'blur'
-                    },
-                    {
-                        min: 6,
-                        max: 30,
-                        message: "用户名长度应在6-30个字符内",
-                        trigger: 'blur'
-                    }
+                email: [
+                    { required: true, message: "请输入邮箱", trigger: 'blur' },
+                    { type: 'email', message: "邮箱格式不正确", trigger: 'blur' }
                 ],
                 password: [
-                    {
-                        required: true,
-                        message: "请输入密码",
-                        trigger: 'blur'
-                    },
+                    { required: true, message: "请输入密码", trigger: 'blur' },
                     {
                         validator: (rule, value, callback)=>{
                             if(value === '') callback(new Error("请输入密码"));
@@ -69,11 +56,14 @@ export default {
                 if (valid) {
                     loginApi(this.loginForm).then( (result)=> {
                         
-                        const token = result.headers['authorization'];
+                        let token = result.data.token;
+                        let user = result.data.user;
+                        // user.password = user.password.replace(/\w/g, '*');
+                        user.password = '*'.repeat(user.password.length)
                         this.$store.commit('SET_TOKEN', token);
-                        this.$store.commit('SET_USERINFO', Object.assign({},this.loginForm, result.data));
+                        this.$store.commit('SET_USERINFO', user);
                         this.$message({
-                            message: '登录成功',
+                            message: result.msg,
                             type: 'success',
                             duration: 1000,
                             onClose:()=>{this.$router.push('/main')}

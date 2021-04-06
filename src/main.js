@@ -8,7 +8,7 @@ import axios from 'axios';
 import './axois.js';
 import './mock';
 import 'normalize.css/normalize.css';
-import './assets/css/base.css';
+import './assets/css/base.less';
 
 Vue.prototype.$axios = axios ;
 

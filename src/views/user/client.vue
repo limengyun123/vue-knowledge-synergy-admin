@@ -2,15 +2,15 @@
     <div v-if="userData.length">
         <div>
             <el-input placeholder="请输入内容" v-model="searchInput" class="input-with-select">
-                <el-select v-model="searchMothod" slot="prepend" placeholder="请选择查询方式">
-                    <el-option label="用户ID" value="id"></el-option>
-                    <el-option label="用户名" value="userName"></el-option>
-                    <el-option label="姓名" value="actualName"></el-option>
-                    <el-option label="性别" value="sex"></el-option>
-                    <el-option label="电话号码" value="phone"></el-option>
-                    <el-option label="邮箱" value="email"></el-option>
-                    <el-option label="是否在线" value="status"></el-option>
-                    <el-option label="是否激活" value="isActive"></el-option>
+                <el-select v-model="searchMethod" slot="prepend" placeholder="请选择查询方式">
+                    <el-option label="用户ID" :value="1"></el-option>
+                    <el-option label="用户名" :value="2"></el-option>
+                    <el-option label="姓名" :value="3"></el-option>
+                    <el-option label="性别" :value="4"></el-option>
+                    <el-option label="电话号码" :value="5"></el-option>
+                    <el-option label="邮箱" :value="6"></el-option>
+                    <el-option label="是否在线" :value="7"></el-option>
+                    <el-option label="是否激活" :value="8"></el-option>
                 </el-select>
                 <el-button slot="append" icon="el-icon-search" @click="searchSpecificUser"></el-button>
             </el-input>
@@ -83,7 +83,7 @@ export default {
     data() {
         return {
             searchInput: '',
-            searchMothod: '',
+            searchMethod: '',
             paginationInfo:{
                 totalNum: 0,
                 currentPage: 1,
@@ -102,11 +102,20 @@ export default {
     },
     methods: {
         getUsers(){
-            getUsersApi({currentPage:this.paginationInfo.currentPage, pageSize:this.paginationInfo.pageSize,method: this.searchMothod, content: this.searchInput}).then((result)=>{
+            getUsersApi({
+                currentPage:this.paginationInfo.currentPage, 
+                pageSize:this.paginationInfo.pageSize,
+                searchMethod: this.searchMethod, 
+                searchInput: this.searchInput
+            }).then((result)=>{
+                console.log(1);
                 this.paginationInfo.totalNum = result.data.totalNum;
-                this.userData = result.data.users;
+                this.userData = result.data.users||[];
+                console.log(2);
             }).catch((reason)=>{
-                this.$message.error(reason);
+                console.log(3);
+                // this.$message.error(reason);
+                console.log(4);
             })
         },
         handleSizeChange(val){
