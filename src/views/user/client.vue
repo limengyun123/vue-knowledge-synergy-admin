@@ -1,8 +1,8 @@
 <template>
-    <div v-if="userData.length">
-        <div>
-            <el-input placeholder="请输入内容" v-model="searchInput" class="input-with-select">
-                <el-select v-model="searchMethod" slot="prepend" placeholder="请选择查询方式">
+    <div class='user-page'>
+        <div class='user-search-box'>
+            <el-input placeholder="请输入内容" v-model="searchInput" class="user-input-with-select">
+                <el-select v-model="searchMethod" slot="prepend" placeholder="请选择查询方式" class='user-method-select'>
                     <el-option label="用户ID" :value="1"></el-option>
                     <el-option label="用户名" :value="2"></el-option>
                     <el-option label="姓名" :value="3"></el-option>
@@ -15,71 +15,82 @@
                 <el-button slot="append" icon="el-icon-search" @click="searchSpecificUser"></el-button>
             </el-input>
         </div>
-        <el-table :data="userData" style="width: 100%">
-            <el-table-column fixed prop="id" label="用户ID" width="80"></el-table-column>
-            <el-table-column prop="userName" label="用户名" width="150"></el-table-column>
-            <el-table-column prop="actualName" label="姓名" width="80"></el-table-column>
-            <el-table-column prop="sex" label="性别" width="50">
-                <template slot-scope="scope">
-                    <span v-if="scope.row.sex">男</span>
-                    <span v-else>女</span>
-                </template>
-            </el-table-column>
-            <el-table-column prop="phone" label="电话号码" width="120"></el-table-column>
-            <el-table-column prop="email" label="邮箱" width="180"></el-table-column>
-            <el-table-column prop="registerTime" label="注册时间" width="140"></el-table-column>
-            <el-table-column prop="status" label="在线" width="50" align="center">
-                <template slot-scope="scope">
-                    <span :class="{'el-icon-circle-plus': true, 'icon-active': scope.row.status }"></span>
-                </template>
-            </el-table-column>
-            <el-table-column fixed="right" label="激活" width="60">
-                <template slot-scope="scope">
-                    <el-switch v-model="scope.row.isActive" @change="changeStatus($event, scope.row)"  active-color="#13ce66" inactive-color="#ff4949"></el-switch>
-                </template>
-            </el-table-column>
-            <el-table-column fixed="right" label="警告" width="60" align="center">
-                <template slot-scope="scope">
-                    <span class="el-icon-warning" @click="handleWarning(scope.row.id)"></span>
-                </template>
-            </el-table-column>
-        </el-table>
-        <el-pagination class="pagination"
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            :current-page="paginationInfo.currentPage"
-            :page-sizes="[3,10, 20, 30, 40]"
-            :page-size="paginationInfo.pageSize"
-            layout="total, sizes, prev, pager, next, jumper"
-            :total="paginationInfo.totalNum"
-            :pager-count="paginationInfo.paperCount"
-            hide-on-single-page
-            >
-        </el-pagination>
-        <el-drawer title="发送警告" :visible.sync="showDrawer" direction="rtl" :before-close="handleClose">
-            <div class='message-drawer'>
-                <div class='message-frame' ref="message-frame">
-                    <div v-for="msg in messageRecord" :key="msg.mId" class="message-item">                        
-                        <div class='message-content'>{{msg.content}}</div>                        
+        <div v-if="userData.length" class="user-data-show">
+            <el-table :data="userData" class="user-table">
+                <el-table-column fixed prop="id" label="用户ID" width="80"></el-table-column>
+                <el-table-column prop="userName" label="用户名" width="150"></el-table-column>
+                <el-table-column prop="actualName" label="姓名" width="80"></el-table-column>
+                <el-table-column prop="sex" label="性别" width="50">
+                    <template slot-scope="scope">
+                        <span v-if="scope.row.sex">男</span>
+                        <span v-else>女</span>
+                    </template>
+                </el-table-column>
+                <el-table-column prop="phone" label="电话号码" width="120"></el-table-column>
+                <el-table-column prop="email" label="邮箱" width="180"></el-table-column>
+                <el-table-column prop="registerTime" label="注册时间" width="140"></el-table-column>
+                <el-table-column prop="status" label="在线" width="50" align="center">
+                    <template slot-scope="scope" class="user-is-online">
+                        <span :class="{'el-icon-circle-plus': true, 'user-icon-active': scope.row.status }"></span>
+                    </template>
+                </el-table-column>
+                <el-table-column fixed="right" label="激活" width="60">
+                    <template slot-scope="scope">
+                        <el-switch v-model="scope.row.isActive" @change="changeStatus($event, scope.row)"  active-color="#13ce66" inactive-color="#ff4949"></el-switch>
+                    </template>
+                </el-table-column>
+                <el-table-column fixed="right" label="警告" width="60" align="center">
+                    <template slot-scope="scope">
+                        <span class="el-icon-warning user-warning" @click="handleWarning(scope.row.id)"></span>
+                    </template>
+                </el-table-column>
+            </el-table>
+            <el-pagination class="pagination"
+                @size-change="handleSizeChange"
+                @current-change="handleCurrentChange"
+                :current-page="paginationInfo.currentPage"
+                :page-sizes="[3,10, 20, 30, 40]"
+                :page-size="paginationInfo.pageSize"
+                layout="total, sizes, prev, pager, next, jumper"
+                :total="paginationInfo.totalNum"
+                :pager-count="paginationInfo.paperCount"
+                hide-on-single-page
+                >
+            </el-pagination>
+            <el-drawer title="发送警告" :visible.sync="showDrawer" direction="rtl" :before-close="handleClose">
+                <div class='message-drawer'>
+                    <div class='message-frame' ref="message-frame">
+                        <div v-for="msg in messageRecord" :key="msg.messageId" class="message-item">                        
+                            <div class='message-content'>{{msg.messageContent}}</div>                        
+                        </div>
+                    </div>
+                    <div>
+                        <el-input type="textarea" v-model="chatContent" class='message-input' placeholder="请在此输入..."></el-input>
+                        <!-- <el-button class="message-send-button" @click="sendMessage">发送</el-button> -->
+                        <ButtonPrimary class="message-send-button" @buttonClick='sendMessage'>
+                            发送
+                        </ButtonPrimary>
                     </div>
                 </div>
-                <div>
-                    <el-input type="textarea" v-model="chatContent" class='message-input' placeholder="请在此输入..."></el-input>
-                    <el-button type="primary" class="message-send-button" @click="sendMessage">发送</el-button>
-                </div>
-            </div>
-        </el-drawer>
-    </div>
-    <div v-else>
-        暂无用户信息
+            </el-drawer>
+        </div>
+        <div v-else>
+            <NoData />
+        </div>
     </div>
 </template>
 
 <script>
 import {getUsersApi,sendMessageApi} from '../../api/user';
+import NoData from '../../components/noData';
+import ButtonPrimary from '../../components/buttonPrimary';
 
 export default {
     name: 'Client',
+    components:{
+        'NoData': NoData,
+        'ButtonPrimary': ButtonPrimary
+    },
     data() {
         return {
             searchInput: '',
@@ -179,8 +190,8 @@ export default {
         async pushMessage(){
             let time = new Date();
             await this.messageRecord.push({
-                sendTime: time, 
-                content: this.chatContent
+                messageMndTime: time, 
+                messageContent: this.chatContent
             });
             this.toBottom();
         },
@@ -192,72 +203,94 @@ export default {
 </script>
 
 <style scoped>
-    .input-with-select {
-        width: 35rem;
-        background-color: #fff;
-    }
 
-    .el-select{
-        width: 9rem;
-    }
+.user-page{
+    padding: 1rem;
+}
 
-    .pagination{
-        margin-top: 3rem;
-        text-align: center;
-    }
+.user-search-box{
+    margin: 1rem;
+}
 
-    .el-icon-circle-plus{
-        color: #bbbbbb;
-        background: #bbbbbb;
-        border-radius: 1rem;
-    }
-    .icon-active{
-        color: #00dd00;
-        background: #00dd00;
-    }
+.user-data-show{
+    margin:1rem;
+}
 
-    .el-icon-warning{
-        font-size: 1.3rem;
-        color: #ffbb00;
-    }
+.user-table{
+    box-shadow: #dddddd 0 0 0.4rem;
+    border: 0.1rem solid #dddddd;
+    border-radius: 0.4rem;
+}
 
-    .message-drawer{
-        margin: auto 5%;
-    }
 
-    .message-frame{
-        height: 20rem;
-        background: #fafafa;
-        border-radius: 1rem;
-        box-shadow: #aaaaaa 0 0 0.4rem;
-        overflow: scroll;
-        padding: 0.8rem;
-    }
-    .message-item{
-        display: flex;
-        flex-direction: row-reverse;
-        justify-content: stretch;
-        margin: 2rem auto;
-    }
+.pagination{
+    margin-top: 2rem;
+    text-align: center;
+}
 
-    .message-content{
-        background: white;
-        border-radius: 1rem;
-        padding: 0.5rem;
-        max-width: 50%;
-        line-height: 1.5rem;
-        color: #555555;
-        font-size: 0.8rem;
-    }
+.user-input-with-select {
+    width: 35rem;
+    background-color: #fff;
+}
 
-    .message-input>>>.el-textarea__inner{
-        resize: none;/* 去掉 textarea 下面拉伸的标志*/
-        height: 5rem;
-        margin: 1rem auto;
-    }
+.user-method-select{
+    width: 9rem;
+}
 
-    .message-send-button{
-        float: right;
-    }
+
+.el-icon-circle-plus{
+    color: #bbbbbb;
+    background-color: #bbbbbb;
+    border-radius: 1rem;
+}
+
+.user-icon-active{
+    color: #00dd00;
+    background-color: #00dd00;
+}
+
+.user-warning{
+    font-size: 1.3rem;
+    color: #ffbb00;
+}
+
+.message-drawer{
+    margin: auto 5%;
+}
+
+.message-frame{
+    height: 20rem;
+    background-color: #fafafa;
+    border-radius: 1rem;
+    box-shadow: #aaaaaa 0 0 0.4rem;
+    overflow: scroll;
+    padding: 0.8rem;
+}
+.message-item{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: stretch;
+    margin: 2rem auto;
+}
+
+.message-content{
+    background-color: white;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    max-width: 50%;
+    line-height: 1.5rem;
+    color: #555555;
+    font-size: 0.8rem;
+}
+
+.message-input >>> .el-textarea__inner{
+    resize: none;/* 去掉 textarea 下面拉伸的标志*/
+    height: 5rem;
+    margin: 1rem auto;
+}
+
+.message-send-button{
+    float: right;
+}
 
 </style>

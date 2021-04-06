@@ -1,24 +1,24 @@
 <template>
-    <div>
-        <div v-if="resources.length">
-            <div>
-                <span>资源类型：</span>
-                <el-select v-model="searchMothodType" slot="prepend">
-                    <el-option label="所有" :value="3"></el-option>
-                    <el-option label="未审核" :value="0"></el-option>
-                    <el-option label="敏感资源" :value="1"></el-option>
-                    <el-option label="正常资源" :value="2"></el-option>
-                </el-select>
-                <span>资源是否删除：</span>
-                <el-select v-model="searchMothodDeleted" slot="prepend">
-                    <el-option label="所有" :value="2"></el-option>
-                    <el-option label="未删除" :value="0"></el-option>
-                    <el-option label="已删除" :value="1"></el-option>
-                </el-select>
-                <el-button icon="el-icon-search" @click="searchSpecificResources"></el-button>
-            </div>
-            <div>
-                <div v-for="item in resources" :key="item.resourceId" >
+    <div class='resource-page'>
+        <div class='resource-search-box'>
+            <span class='resource-search-label'>资源类型：</span>
+            <el-select v-model="searchMethodType" slot="prepend">
+                <el-option label="未审核" :value="0"></el-option>
+                <el-option label="敏感资源" :value="1"></el-option>
+                <el-option label="正常资源" :value="2"></el-option>
+            </el-select>
+            <span class='resource-search-label'>资源是否删除：</span>
+            <el-select v-model="searchMethodDeleted" slot="prepend">
+                <el-option label="未删除" :value="0"></el-option>
+                <el-option label="已删除" :value="1"></el-option>
+            </el-select>
+            <ButtonDefault @buttonClick="searchSpecificResources">
+                <span class='el-icon-search'></span>
+            </ButtonDefault>
+        </div>
+        <div v-if="resources.length" class="resource-data-show">
+            <div class="resource-list">
+                <div v-for="item in resources" :key="item.resourceId" class="resource-item">
                     <el-row>
                         <el-col :span="2">
                             <el-avatar :src="require('@/assets/img/file_type_1.png')" shape="square" size="large"></el-avatar>
@@ -64,21 +64,26 @@
         </el-pagination>
         </div>
         <div v-else>
-            暂无资源
+            <NoData />
         </div>
-    
     </div>
 </template>
 
 <script>
 import {getResourcesApi, auditResourceApi} from '../../api/resource';
+import NoData from '../../components/noData';
+import ButtonDefault from '../../components/buttonDefault';
 
 export default {
     name: "Resource",
+    components:{
+        'NoData': NoData,
+        'ButtonDefault': ButtonDefault
+    },
     data(){
         return {
-            searchMothodType: 3,
-            searchMothodDeleted: 0,
+            searchMethodType: '',
+            searchMethodDeleted: '',
             paginationInfo:{
                 totalNum: 0,
                 currentPage: 1,
@@ -96,8 +101,8 @@ export default {
             getResourcesApi({
                 currentPage:this.paginationInfo.currentPage, 
                 pageSize:this.paginationInfo.pageSize,
-                resourceReview: this.searchMothodType,
-                resourceIsDeleted: this.searchMothodDeleted
+                resourceReview: this.searchMethodType,
+                resourceIsDeleted: this.searchMethodDeleted
             }).then((result)=>{
                 this.resources = result.data.resources;
                 this.paginationInfo.totalNum = result.data.totalNum;
@@ -135,19 +140,51 @@ export default {
 }
 </script>
 
-<style scoped>
-    .pagination{
-        margin-top: 3rem;
-        text-align: center;
-    }
+<style>
+.resource-page{
+    padding: 1rem;
+}
 
-    .icon-success{
-        color: #00dd00;
-    }
+.resource-search-box{
+    margin: 1rem;
+    background-color: white;
+    border: solid #dddddd 1px;
+    border-radius: 0.4rem;
+    box-shadow: #dddddd 0 0 0.4rem;
+    color: #555555;
+}
 
-    .icon-warning{
-        color: #ffbb00;
-    }
+.resource-search-box .resource-search-label{
+    margin-left: 2rem;
+}
+
+.resource-data-show{
+    margin:1rem;
+}
+
+.resource-list{
+    box-shadow: #dddddd 0 0 0.4rem;
+    border: solid #dddddd 1px;
+    border-radius: 0.4rem;
+    background-color: white;
+}
+
+.resource-item{
+    margin: 0.8rem 1rem;
+    color: #555555;
+}
 
 
+.pagination{
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.icon-success{
+    color: #00dd00;
+}
+
+.icon-warning{
+    color: #ffbb00;
+}
 </style>

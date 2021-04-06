@@ -59,7 +59,10 @@ export default {
                         let token = result.data.token;
                         let user = result.data.user;
                         // user.password = user.password.replace(/\w/g, '*');
-                        user.password = '*'.repeat(user.password.length)
+                        console.log(user);
+                        if(user&&user.password){
+                            user.password = '*'.repeat(user.password.length) 
+                        }
                         this.$store.commit('SET_TOKEN', token);
                         this.$store.commit('SET_USERINFO', user);
                         this.$message({

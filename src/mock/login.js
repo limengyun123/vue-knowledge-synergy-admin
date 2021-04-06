@@ -5,11 +5,13 @@ export default {
         return{
             code: 200,
             msg: "登录成功",
-            headers:{'authorization': 'hfos93789yhef139hfw3827rhg8'},
             data: {
-                actualName: '赵天泽',
-                phone: '17305827492',
-                superLevel: true
+                token:'hfos93789yhef139hfw3827rhg8',
+                user:{
+                    actualName: '赵天泽',
+                    phone: '17305827492',
+                    superLevel: true
+                }
             }
         };
     },

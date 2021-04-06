@@ -1,15 +1,11 @@
 <template>
-    <el-header class='head'>
-        <el-col :span='2'>
-            <span class="el-icon-back" @click="getBack"></span>
-        </el-col>
-        <el-col :span='22'>
-        <el-breadcrumb class="bread-crumb" separator-class="el-icon-arrow-right">
-            <!-- <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item> -->
-            <el-breadcrumb-item>{{this.parentDir}}</el-breadcrumb-item>
-            <el-breadcrumb-item>{{this.childDir}}</el-breadcrumb-item>
-        </el-breadcrumb>
-        </el-col>
+    <el-header class='common-head'>
+        <span class="el-icon-back" @click="getBack"></span>
+        <span>
+            <span>{{this.parentDir}}</span>
+            <span>/</span>
+            <span>{{this.childDir}}</span>
+        </span>
     </el-header>
 </template>
 
@@ -65,15 +61,18 @@ export default {
 }
 </script>
 
-<style scoped>
-.head{
-    border-bottom: lightblue solid 0.1rem;
-    box-shadow: lightblue 0 0 0.5rem 0 ;
-    font-size: 2rem;
-    padding: 0.6rem 1rem;
+<style lang="less">
+@import "../assets/css/common.less";
 
+.common-head{
+    height: 4rem;
+    background-color: @main-color;
+    color:white;
+    line-height: 4rem;
 }
-.bread-crumb{
-    margin-top: 0.8rem;
+
+.common-head .el-icon-back{
+    font-size: 2rem;
+    margin-right: 3rem;
 }
 </style>

@@ -1,6 +1,7 @@
 <template>
     <div>
         <GoBackHead />
+        <div class="add-admin-body">
         <el-form :model="adminInfo" status-icon ref="adminInfo" :rules="infoRules" label-width="100px" class="admin-info-form">
             <el-form-item label="用户名" prop="userName">
                 <el-input v-model="adminInfo.userName" autocomplete="off"></el-input>
@@ -32,6 +33,7 @@
                 <el-button type="primary" @click="submitInfoForm('adminInfo')">提交修改</el-button>
             </el-form-item>
         </el-form>
+        </div>
     </div>
 </template>
 
@@ -111,9 +113,22 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less">
+@import "../../assets/css/common.less";
+
+.add-admin-body{
+    background-color: @support-color-bg;
+    overflow: scroll;
+    height: calc(100vh - 4rem);
+}
+
 .admin-info-form{
     width: 25rem;
     margin: 2rem auto 1rem;
+    padding: 2rem 2rem 0 1rem;
+    background-color: white;
+    box-shadow: #dddddd 0 0 0.4rem;
+    border: 0.1rem solid #dddddd;
+    border-radius: 0.4rem;
 }
 </style>

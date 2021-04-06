@@ -1,8 +1,10 @@
 <template>
-    <div>
-        <div><el-button><router-link to='/user/addAdmin'>添加管理员</router-link></el-button></div>
-        <div v-if="adminData.length">
-            <el-table :data="adminData" style="width: 100%">
+    <div class='admin-page'>
+        <ButtonDefault @buttonClick='jumpToAddAdmin'>
+            添加管理员
+        </ButtonDefault>
+        <div v-if="adminData.length" class="admin-data-show">
+            <el-table :data="adminData" class="admin-table">
                 <el-table-column fixed prop="id" label="用户ID" width="80"></el-table-column>
                 <el-table-column prop="userName" label="用户名" width="150"></el-table-column>
                 <el-table-column prop="actualName" label="姓名" width="80"></el-table-column>
@@ -24,7 +26,7 @@
                 @size-change="handleSizeChange"
                 @current-change="handleCurrentChange"
                 :current-page="paginationInfo.currentPage"
-                :page-sizes="[10, 20, 30, 40]"
+                :page-sizes="[5, 10, 20, 30, 40]"
                 :page-size="paginationInfo.pageSize"
                 layout="total, sizes, prev, pager, next, jumper"
                 :total="paginationInfo.totalNum"
@@ -34,22 +36,28 @@
             </el-pagination>
         </div>
         <div v-else>
-            暂无管理员信息
+            <NoData />
         </div>
     </div>
 </template>
 
 <script>
 import {getAdminsApi, updateLevelApi} from '../../api/user';
+import NoData from '../../components/noData';
+import ButtonDefault from '../../components/buttonDefault';
 
 export default {
     name: 'Administrator',
+    components:{
+        'NoData': NoData,
+        'ButtonDefault': ButtonDefault,
+    },
     data() {
         return {
             paginationInfo:{
                 totalNum: 0,
                 currentPage: 1,
-                pageSize: 10,
+                pageSize: 5,
                 pagerCount: 7
             },
             adminData: [],
@@ -105,31 +113,33 @@ export default {
                 this.$message({ type: 'info', message: '您已取消操作' });
           });
         },
-        
+        jumpToAddAdmin(){
+            this.$router.push('/user/addAdmin');
+        }
     },
 }
 </script>
 
-<style scoped>
-    .pagination{
-        margin-top: 3rem;
-        text-align: center;
-    }
+<style>
 
-    .el-icon-circle-plus{
-        color: #bbbbbb;
-        background: #bbbbbb;
-        border-radius: 1rem;
-    }
-    .icon-active{
-        color: #00dd00;
-        background: #00dd00;
-    }
+.admin-page{
+    padding: 1rem;
+}
 
-    .el-icon-warning{
-        font-size: 1.3rem;
-        color: #ffbb00;
-    }
+.admin-data-show{
+    margin:1rem;
+}
 
+.admin-table{
+    box-shadow: #dddddd 0 0 0.4rem;
+    border: solid #dddddd 1px;
+    border-radius: 0.4rem;
+}
+
+
+.pagination{
+    margin-top: 2rem;
+    text-align: center;
+}
 
 </style>

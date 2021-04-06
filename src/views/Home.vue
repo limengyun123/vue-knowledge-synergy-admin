@@ -1,20 +1,20 @@
 <template>
-	<el-container>
-		<el-aside :width="navWidth+'px'">
-			<div>LOGO 知识协同管理端</div>
-			<el-menu router default-active="$route.path" class="el-menu-vertical-demo"  :collapse="isCollapse">
+	<div class='system-layout'>
+		<div id='system-left'>
+			<div class='system-title'>LOGO 知识协同管理端</div>
+			<el-menu router default-active="$route.path" class="system-menu"  :collapse="isCollapse">
 				<el-menu-item index="/main" route='/main'>
 					<i class="el-icon-s-home"></i><span slot="title">主页</span>
 				</el-menu-item>
 				<el-submenu index="1">
 					<template slot="title"><i class="el-icon-set-up"></i><span slot="title">系统管理</span></template>
-					<el-menu-item index="/main/system/systemInfo"><i class="el-icon-s-marketing"></i>系统实时信息</el-menu-item>
-					<el-menu-item index="/main/system/server"><i class="el-icon-s-platform" disabled></i>服务器管理</el-menu-item>
+					<el-menu-item index="/main/system/systemInfo">系统实时信息</el-menu-item>
+					<el-menu-item index="/main/system/server">服务器管理</el-menu-item>
 				</el-submenu>
 				<el-submenu index="2">
 					<template slot="title"><i class="el-icon-user"></i><span slot="title">用户管理</span></template>
-					<el-menu-item index="/main/user/client"><i class="el-icon-user-solid"></i>客户管理</el-menu-item>
-					<el-menu-item index="/main/user/admin"><i class="el-icon-s-custom"></i>管理员管理</el-menu-item>
+					<el-menu-item index="/main/user/client">客户管理</el-menu-item>
+					<el-menu-item index="/main/user/admin">管理员管理</el-menu-item>
 				</el-submenu>
 				<el-menu-item index="/main/team">
 					<i class="el-icon-coordinate"></i><span slot="title">团队管理</span>
@@ -23,10 +23,10 @@
 					<i class="el-icon-folder"></i><span slot="title">资源管理</span>
 				</el-menu-item>				
 			</el-menu>
-		</el-aside>
-		<el-container>
-			<el-header class="admin_end-head">
-				<span class="fold-button">
+		</div>
+		<div class='system-right'>
+			<div class="system-head">
+				<span class="menu-fold-button">
 					<span v-if="isCollapse">
 						<span class='el-icon-s-unfold' @click='reverteNavState'></span>
 					</span>
@@ -35,7 +35,7 @@
 					</span>
 				</span>
 				
-				<span class="avatar">
+				<span class="system-avatar">
                     <el-dropdown @command="handleCommand">
                         <span class="el-dropdown-link">
                             <el-avatar :src="require('@/assets/img/avatar_1.png')"></el-avatar>
@@ -48,13 +48,20 @@
                         </el-dropdown-menu>
                     </el-dropdown>
 				</span>
-			</el-header>
-			<el-main class='admin-end-body'>
+			</div>
+			<div class='system-body'>
 				<router-view></router-view>
-				<el-footer>Footer</el-footer>	
-			</el-main>
-		</el-container>
-	</el-container>
+				<div class="system-footer">
+					<p>知识协同管理平台管理端</p>
+					<div class="footer-description-detail">
+						<p>界面设计者：李梦云</p>
+						<p>团队成员：李梦云、詹宁子、刘乾坤、朱淦骏（排名不分先后）</p>
+						<p>无备案 练习使用</p>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</div>
 </template>
 
 <script>
@@ -65,7 +72,6 @@ export default {
 	name: 'Home',
 	data(){
 		return {
-			navWidth: 200,
 			isCollapse: false,
 		}
 	},
@@ -76,8 +82,9 @@ export default {
 	},
 	methods:{
 		reverteNavState(){
-			this.navWidth = 270-this.navWidth;
 			this.isCollapse = !this.isCollapse;
+			let elm = document.querySelector('#system-left');
+			elm.style.width=265-elm.offsetWidth+'px';
 		},
 		exit(){
 			this.$store.commit('REMOVE_INFO');
@@ -111,26 +118,86 @@ export default {
 }
 </script>
 
-<style scoped>
-.fold-button{
+<style lang="less">
+@import "../assets/css/common.less";
+
+.system-layout{
+	display: flex;
+}
+
+#system-left{
+	width: 200px;
+}
+
+.system-right{
+	flex:1;
+}
+
+.system-title{
+	height: 4rem;
+	background-color: @main-color;
+	color: white;
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	line-height: 4rem;
+}
+
+/* 修改el-menu样式start */ 
+.system-menu{
+	border:none;
+}
+
+.system-menu .el-menu-item:hover{
+	background-color: inherit;
+	color: @support-color-ps;
+}
+
+.system-menu>.el-submenu:hover{
+	background-color: inherit;
+	color: @support-color-ps ;
+}
+
+.system-menu>.el-submenu .el-submenu__title:hover{
+	background-color: inherit;
+	color: @support-color-ps;
+}
+
+.system-menu .el-menu-item.is-active{
+	background-color: @support-color-bg;
+	color: @support-color-ps;
+	border-left: solid 0.2rem @support-color-ps;
+	margin-left: 0.2rem;
+}
+/* 修改el-menu样式end */ 
+
+.menu-fold-button{
 	font-size: 1.5rem;
 }
 
-.avatar{
+.system-head{
+	height: 4rem;
+    font-size: 2rem;
+}
+
+.system-avatar{
+	margin-right: 2rem;
+	margin-top: 0.8rem;
 	float: right;
 }
 
-.admin_end-head{
-	border-bottom: lightblue solid 0.1rem;
-    box-shadow: lightblue 0.5rem 0 0.5rem 0 ;
-    font-size: 2rem;
-    padding: 0.6rem 1rem;
-	margin-bottom: 0.5rem;
+.system-body{
+	background-color: @support-color-bg;
+	height: calc(100vh - 4rem);
+	overflow: scroll;
 }
 
-.admin-end-body{
-	height: calc(99vh - 5rem);
-	overflow: scroll;
+.system-footer{
+	text-align: center;
+	color: #aaaaaa;
+	border-top: #dddddd solid 0.1rem;
+}
+
+.footer-description-detail{
+	font-size: 0.8rem;
 }
 
 </style>

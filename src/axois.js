@@ -1,7 +1,7 @@
 import axios from 'axios';
 import store from './store';
 import router from './router';
-// axios.defaults.baseURL = 'http://localhost:8081';
+axios.defaults.baseURL = 'http://localhost:8081';
 
 axios.interceptors.request.use((config)=>{
     console.log("请求拦截");
@@ -9,15 +9,15 @@ axios.interceptors.request.use((config)=>{
     if(token){
         config.headers['token'] = token;
     }
-    config.headers['content-type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
-    console.log(config);
+    // config.headers['content-type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
+    // console.log(config);
     return config;
 });
 
 axios.interceptors.response.use((response)=>{
-    console.log(response);
+    // console.log(response);
     let result = response.data;
-    if(result.code === 0) return Promise.resolve(result);
+    if(result.code === 200) return Promise.resolve(result);
     else return Promise.reject(result.msg);
 },
 error=>{
