@@ -17,17 +17,68 @@
             </ButtonDefault>
         </div>
         <div v-if="resources.length" class="resource-data-show">
-            <div class="resource-list">
+            <el-table :data="resources" class="resource-table">
+                <el-table-column fixed prop="resourceId" label="资源ID" width="80"></el-table-column>
+                <el-table-column prop="resourceType" label="类型" width="80">
+                    <template slot-scope="scope">
+                        <el-avatar :src="require('@/assets/img/file_type_1.png')" shape="square" size="large" :index="scope.row.resourceType"></el-avatar>
+                    </template>
+                </el-table-column>
+                <el-table-column prop="resourceName" label="名称" width="300"></el-table-column>
+                <el-table-column prop="resourceCreateTime" label="上传时间" width="140"></el-table-column>
+                <el-table-column prop="userName" label="上传者" width="80"></el-table-column>
+                <el-table-column prop="resourceSize" label="大小" width="60"></el-table-column>
+                <el-table-column fixed="right" label="预览" width="60">
+                    <template slot-scope="scope">
+                        <a :index="scope.row.resourceId" target="_blank" href='https://view.officeapps.live.com/op/view.aspx?src=http://mczaiyun.top/ht/123.xlsx'><span class="el-icon-view"></span></a>
+                    </template>
+                </el-table-column>
+                <el-table-column fixed="right" label="下载" width="60">
+                    <template slot-scope="scope">
+                        <a :index="scope.row.resourceId" href='http://mczaiyun.top/ht/123.xlsx' download='http://mczaiyun.top/ht/123.xlsx'><span class="el-icon-download"></span></a>
+                    </template>
+                </el-table-column>
+                <el-table-column prop="sex" fixed="right" label="审核" width="100">
+                    <template slot-scope="scope">
+                        <div v-if="scope.row.resourceReview==2">
+                            <span class="el-icon-success icon-success">正常资源</span>
+                        </div>
+                        <div v-else-if="scope.row.resourceReview==1">
+                            <span class="el-icon-success icon-warning">敏感资源</span>
+                        </div>
+                        <div v-else>
+                            <span>未审核 </span>
+                            <el-dropdown trigger="click" @command="handleAudit">
+                                <span class="el-dropdown-link">
+                                    <span class="el-icon-more-outline"></span>
+                                </span>
+                                <el-dropdown-menu slot="dropdown">
+                                    <el-dropdown-item icon="el-icon-success" class="icon-success" :command="scope.row.resourceId+'2'">正常资源</el-dropdown-item>
+                                    <el-dropdown-item icon="el-icon-success" class="icon-warning" :command="scope.row.resourceId+'1'">敏感资源</el-dropdown-item>
+                                </el-dropdown-menu>
+                            </el-dropdown>
+                        </div>
+                    </template>
+                </el-table-column>
+            </el-table>
+
+            <!-- <div class="resource-list">
                 <div v-for="item in resources" :key="item.resourceId" class="resource-item">
                     <el-row>
                         <el-col :span="2">
                             <el-avatar :src="require('@/assets/img/file_type_1.png')" shape="square" size="large"></el-avatar>
                         </el-col>
-                        <el-col :span="18">
+                        <el-col :span="17">
                             <div>{{item.resourceName}}</div>
                             <div>{{item.resourceCreateTime}} 来自{{item.userName}} {{item.resourceSize}}</div>
                         </el-col>
-                        <el-col :span="4">
+                        <el-col :span="1">
+                            <a target="_blank" href='https://view.officeapps.live.com/op/view.aspx?src=http://mczaiyun.top/ht/123.xlsx'><span class="el-icon-view" title="预览"></span></a>
+                        </el-col>
+                        <el-col :span="1">
+                            <a href='http://mczaiyun.top/ht/123.xlsx' download='http://mczaiyun.top/ht/123.xlsx'><span class="el-icon-download" title="下载"></span></a>
+                        </el-col>
+                        <el-col :span="3">
                             <div v-if="item.resourceReview==2">
                                 <span class="el-icon-success icon-success">正常资源</span>
                             </div>
@@ -49,7 +100,7 @@
                         </el-col>
                     </el-row>
                 </div>
-            </div>
+            </div> -->
             <el-pagination class="pagination"
                 @size-change="handleSizeChange"
                 @current-change="handleCurrentChange"
@@ -162,16 +213,16 @@ export default {
     margin:1rem;
 }
 
-.resource-list{
+.resource-table{
     box-shadow: #dddddd 0 0 0.4rem;
     border: solid #dddddd 1px;
     border-radius: 0.4rem;
-    background-color: white;
+    /* background-color: white; */
 }
 
 .resource-item{
     margin: 0.8rem 1rem;
-    color: #555555;
+    /* color: #555555; */
 }
 
 

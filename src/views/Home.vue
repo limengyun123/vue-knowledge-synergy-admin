@@ -84,7 +84,7 @@ export default {
 		reverteNavState(){
 			this.isCollapse = !this.isCollapse;
 			let elm = document.querySelector('#system-left');
-			elm.style.width=265-elm.offsetWidth+'px';
+			elm.style.width=264-elm.offsetWidth+'px';
 		},
 		exit(){
 			this.$store.commit('REMOVE_INFO');
@@ -170,7 +170,9 @@ export default {
 /* 修改el-menu样式end */ 
 
 .menu-fold-button{
+	line-height: 4rem;
 	font-size: 1.5rem;
+	color: @support-color-ps;
 }
 
 .system-head{

@@ -59,7 +59,7 @@ export default {
                         let token = result.data.token;
                         let user = result.data.user;
                         // user.password = user.password.replace(/\w/g, '*');
-                        console.log(user);
+                        // console.log(user);
                         if(user&&user.password){
                             user.password = '*'.repeat(user.password.length) 
                         }

@@ -1,5 +1,16 @@
 <template>
-  <div class="about">
-    <h1>This is an navigation.</h1>
-  </div>
+    <div class="about">
+        <NoData />
+    </div>
 </template>
+
+<script>
+import NoData from '../components/noData';
+
+export default {
+	name: "Main",
+	components:{
+        'NoData': NoData,
+    },
+}
+</script>

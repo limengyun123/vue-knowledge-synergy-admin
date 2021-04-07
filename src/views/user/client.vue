@@ -30,7 +30,7 @@
                 <el-table-column prop="email" label="邮箱" width="180"></el-table-column>
                 <el-table-column prop="registerTime" label="注册时间" width="140"></el-table-column>
                 <el-table-column prop="status" label="在线" width="50" align="center">
-                    <template slot-scope="scope" class="user-is-online">
+                    <template slot-scope="scope">
                         <span :class="{'el-icon-circle-plus': true, 'user-icon-active': scope.row.status }"></span>
                     </template>
                 </el-table-column>
