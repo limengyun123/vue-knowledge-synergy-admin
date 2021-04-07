@@ -34,7 +34,6 @@
 						<span class='el-icon-s-fold' @click='reverteNavState'></span>
 					</span>
 				</span>
-				
 				<span class="system-avatar">
                     <el-dropdown @command="handleCommand">
                         <span class="el-dropdown-link">
@@ -127,6 +126,7 @@ export default {
 
 #system-left{
 	width: 200px;
+	transition:width .8s; //收缩动画
 }
 
 .system-right{

@@ -1,52 +1,55 @@
 <template>
-    <div>
+    <div class='system-info-page'>
         <!-- 用户访问量 -->
-        <div>
-            <el-select v-model="checkMothodVisit" slot="prepend" @change="selectChange">
-                <el-option label="近一周" :value="1"></el-option>
-                <el-option label="近一月" :value="2"></el-option>
-                <el-option label="近一年" :value="3"></el-option>
-                <el-option label="近三年" :value="4"></el-option>
+        <div class='system-chart-item'>
+            <el-select v-model="checkMothodVisit" slot="prepend" @change="selectChange" class='system-chart-select' popper-class="system-chart-select-option">
+                <el-option label="近一周用户访问量" :value="1"></el-option>
+                <el-option label="近一月用户访问量" :value="2"></el-option>
+                <el-option label="近一年用户访问量" :value="3"></el-option>
+                <el-option label="近三年用户访问量" :value="4"></el-option>
             </el-select>
-            <div id='user-visit' class='chart-area'>
+            <div id='user-visit' class='system-chart-area'>
             </div>
         </div>
         <!-- 注册用户数量 -->
-        <div>
-            <el-select v-model="checkMothodRegister" slot="prepend" @change="selectChange">
-                <el-option label="近一周" :value="1"></el-option>
-                <el-option label="近一月" :value="2"></el-option>
-                <el-option label="近一年" :value="3"></el-option>
-                <el-option label="近三年" :value="4"></el-option>
+        <div class='system-chart-item'>
+            <el-select v-model="checkMothodRegister" slot="prepend" @change="selectChange" class='system-chart-select' popper-class="system-chart-select-option">
+                <el-option label="近一周注册用户数量" :value="1"></el-option>
+                <el-option label="近一月注册用户数量" :value="2"></el-option>
+                <el-option label="近一年注册用户数量" :value="3"></el-option>
+                <el-option label="近三年注册用户数量" :value="4"></el-option>
             </el-select>
-            <div id='user-register' class='chart-area'>
+            <div id='user-register' class='system-chart-area'>
             </div>
         </div>
         <!-- 新建团队数量 -->
-        <div>
-            <el-select v-model="checkMothodTeam" slot="prepend" @change="selectChange">
-                <el-option label="近一周" :value="1"></el-option>
-                <el-option label="近一月" :value="2"></el-option>
-                <el-option label="近一年" :value="3"></el-option>
-                <el-option label="近三年" :value="4"></el-option>
+        <div class='system-chart-item'>
+            <el-select v-model="checkMothodTeam" slot="prepend" @change="selectChange" class='system-chart-select' popper-class="system-chart-select-option">
+                <el-option label="近一周新建团队数量" :value="1"></el-option>
+                <el-option label="近一月新建团队数量" :value="2"></el-option>
+                <el-option label="近一年新建团队数量" :value="3"></el-option>
+                <el-option label="近三年新建团队数量" :value="4"></el-option>
             </el-select>
-            <div id='team-created' class='chart-area'>
-            </div>
-        </div>
-        <!-- 在线用户量及男女比 -->
-        <div>
-            <div id='user-online' class='chart-area'>
+            <div id='team-created' class='system-chart-area'>
             </div>
         </div>
         <!-- 资源使用情况 -->
-        <div>
-            <el-select v-model="checkMothodResorce" slot="prepend" @change="selectChange">
-                <el-option label="近一周" :value="1"></el-option>
-                <el-option label="近一月" :value="2"></el-option>
-                <el-option label="近一年" :value="3"></el-option>
-                <el-option label="近三年" :value="4"></el-option>
+        <div class='system-chart-item'>
+            <el-select v-model="checkMothodResorce" slot="prepend" @change="selectChange" class='system-chart-select' popper-class="system-chart-select-option">
+                <el-option label="近一周资源使用情况" :value="1"></el-option>
+                <el-option label="近一月资源使用情况" :value="2"></el-option>
+                <el-option label="近一年资源使用情况" :value="3"></el-option>
+                <el-option label="近三年资源使用情况" :value="4"></el-option>
             </el-select>
-            <div id='resource-stored' class='chart-area'>
+            <div id='resource-stored' class='system-chart-area'>
+            </div>
+        </div>
+        <!-- 在线用户量及男女比 -->
+        <div class='system-chart-item'>
+            <el-select v-model="checkMothodTeam" slot="prepend" class='system-chart-select' popper-class="system-chart-select-option">
+                <el-option label="此刻用户在线数量" :value="1"></el-option>
+            </el-select>
+            <div id='user-online' class='system-chart-area'>
             </div>
         </div>
     </div>
@@ -55,11 +58,11 @@
 <script>
 import * as echarts from 'echarts/core';
 import { LineChart, BarChart, PieChart} from 'echarts/charts';
-import { TitleComponent, TooltipComponent, LegendComponent, GridComponent } from 'echarts/components';
+import { TooltipComponent, LegendComponent, GridComponent } from 'echarts/components';
 import { CanvasRenderer } from 'echarts/renderers';
 
 echarts.use(
-    [TitleComponent, TooltipComponent, LegendComponent, GridComponent,LineChart, BarChart,PieChart, CanvasRenderer]
+    [TooltipComponent, LegendComponent, GridComponent,LineChart, BarChart,PieChart, CanvasRenderer]
 );
 
 var chartUserVisit = null;
@@ -100,7 +103,6 @@ export default {
             let xAxis = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"];
             let legend = ["用户访问量"];
             return {
-                title: "全年访问量",
                 legend: legend,
                 xAxis: {boundaryGap: false, data:xAxis},
                 series: [
@@ -117,7 +119,6 @@ export default {
             let legend = ["男性", "女性"];
             let xAxis = ["3-24","3-25","3-26","3-27","3-28","3-29","3-30"];
             return {
-                title: "近一周注册量",
                 legend: legend,
                 xAxis: {data: xAxis},
                 series: userRegister.map((value, index)=>{
@@ -135,7 +136,6 @@ export default {
             let xAxis = ["3-1","3-3","3-6","3-9","3-12","3-15","3-18","3-21","3-24","3-27","3-30"];
             let legend = ['团队创建总数'];
             return {
-                title: "近一周团队总数",
                 legend: legend,
                 xAxis: {boundaryGap: false, data:xAxis},
                 series: {
@@ -150,7 +150,6 @@ export default {
             let xAxis = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"];
             let legend = ['资源使用量'];
             return {
-                title: "全年资源使用量",
                 legend: legend,
                 xAxis: {boundaryGap: false, data:xAxis},
                 series: [
@@ -164,7 +163,6 @@ export default {
         },
         updateCharts(chart, param){
             chart.setOption({
-                title: { text: param.title },
                 tooltip:{ trigger: 'axis' },
                 legend: { data: param.legend},
                 xAxis: param.xAxis,
@@ -176,7 +174,6 @@ export default {
             let teamCreated = [{name:'男性用户',value: 432}, {name: '女性用户', value: 305}];
             let teamTotal = [{name:'总数', value:737}];
             chartUserOnline.setOption({
-                title: {text: '此刻在线用户数量'},
                 tooltip: {trigger: 'item' },
                 legend: { top: '5%', left: 'center' },
                 series: [
@@ -210,9 +207,55 @@ export default {
 }
 </script>
 
-<style scoped>
-    .chart-area{
-        width: 35rem;
-        height: 20rem;
-    }
+<style lang="less">
+@import "../../assets/css/common.less";
+
+.system-info-page{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.system-chart-item{
+    margin: 3rem 2rem;
+}
+
+/* 修改el-select的样式*/
+.system-chart-select{
+    border-left: solid 0.4rem @support-color-ps;
+    margin-bottom: 1rem;
+}
+
+.system-chart-select .el-input__inner{
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #555555;    
+    background-color: transparent;
+    border: none;
+} 
+
+.system-chart-select-option .el-select-dropdown__item:hover{
+    background-color:@support-color-bg;
+}
+
+.system-chart-select-option .selected{
+    color:@main-color;
+}
+/* 修改el-select的样式结束*/
+
+.system-chart-area{
+    background: white;
+    width: 30rem;
+    height: 18rem;
+    padding: 0.5rem;
+    text-align: center;
+    box-shadow: #dddddd 0 0 0.4rem;
+    border: 0.1rem solid #dddddd;
+    border-radius: 0.4rem;
+}
+
+#user-online{
+    width: 30rem;
+    height: 20rem;
+}
 </style>
