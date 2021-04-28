@@ -26,4 +26,138 @@
 /*全局滚动条样式结束*/
 
 
+/* 修改el-menu样式开始 */ 
+.system-menu{
+	border:none;
+}
+
+.el-menu-item:hover{
+	background-color: inherit;
+	color: @support-color-ps;
+}
+
+.el-submenu:hover{
+	background-color: inherit;
+	color: @support-color-ps ;
+}
+
+.el-submenu .el-submenu__title:hover{
+	background-color: inherit;
+	color: @support-color-ps;
+}
+
+.el-menu-item.is-active{
+	background-color: @support-color-bg;
+	color: @support-color-ps;
+	border-left: solid 0.2rem @support-color-ps;
+	margin-left: 0.2rem;
+}
+/* 修改el-menu样式结束 */ 
+
+
+/* 全局分页栏样式修改开始*/
+.el-pagination{
+    margin: 2rem 0;
+    text-align: center;
+}
+.el-pagination .number:hover{
+    color: @support-color-ps;
+}
+.el-pagination .el-pager .active{
+    color: @support-color-ps;
+}
+/* 全局分页栏样式修改结束*/
+
+
+
+
+/*修改el-dropdown的默认样式 */
+.el-popper .el-dropdown-menu__item:hover{
+    color: @main-color;
+    background-color:@support-color-bg;
+}
+.el-popper .el-dropdown-menu__item:focus{
+    color: @main-color;
+    background-color:@support-color-bg;
+}
+
+/*修改el-dropdown的默认样式结束 */
+
+
+/* 修改el-select的样式*/
+.el-select .el-input__inner:focus{
+    border-color:@support-color-ps !important;
+}
+.el-popper .el-select-dropdown__item:hover{
+    color: @main-color;
+    background-color:@support-color-bg;
+}
+.el-popper .selected{
+    color:@main-color;
+}
+/* 修改el-select的样式结束*/
+
+
+
+/* 修改el-input的样式开始*/
+.el-input__inner:focus{
+    border-color: @support-color-ps;
+}
+.el-textarea__inner:focus{
+    border-color: @support-color-ps;
+}
+.el-checkbox__input.is-checked .el-checkbox__inner{
+    background-color: @support-color-ps;
+    border-color: @support-color-ps;
+}
+.el-checkbox__input.is-checked + .el-checkbox__label {
+    color: @support-color-ps;
+}
+.el-radio__input.is-checked + .el-radio__label {
+    color: @support-color-ps;
+}
+.el-radio__input.is-checked .el-radio__inner {
+    background-color: @support-color-ps;
+    border-color: @support-color-ps;
+}
+.el-textarea__inner{
+    resize: none;/* 去掉 textarea 下面拉伸的标志*/
+    height: 5rem;
+    margin: 1rem auto;
+}
+/* 修改el-input的样式结束*/
+
+
+/* 修改el-button的样式开始*/
+.el-button--default {
+    color: @support-color-ps;
+    // background-color: @support-color-bg;
+    border-color: @support-color-ps;
+}
+.el-button--default:hover{
+    color: @support-color-ps;
+    background-color: @support-color-bg;
+    border-color: @support-color-ps;
+}
+.el-button--default:focus{
+    color: @support-color-ps;
+    background-color: @support-color-bg;
+    border-color: @support-color-ps;
+}
+
+.el-button--primary{
+    color: white;
+    background-color: @support-color-ps;
+    border: none;
+}
+.el-button--primary:hover{
+    color: white;
+    background-color: @main-color;
+}
+.el-button--primary:focus{
+    color: white;
+    background-color: @main-color;
+}
+
+/* 修改el-button的样式结束*/
 

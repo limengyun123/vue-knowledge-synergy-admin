@@ -2,7 +2,7 @@
     <div class='system-info-page'>
         <!-- 用户访问量 -->
         <div class='system-chart-item'>
-            <el-select v-model="checkMothodVisit" slot="prepend" @change="selectChange" class='system-chart-select' popper-class="system-chart-select-option">
+            <el-select v-model="checkMethodVisit" slot="prepend" @change="selectChange" class='system-chart-select' popper-class="system-chart-select-option">
                 <el-option label="近一周用户访问量" :value="1"></el-option>
                 <el-option label="近一月用户访问量" :value="2"></el-option>
                 <el-option label="近一年用户访问量" :value="3"></el-option>
@@ -13,7 +13,7 @@
         </div>
         <!-- 注册用户数量 -->
         <div class='system-chart-item'>
-            <el-select v-model="checkMothodRegister" slot="prepend" @change="selectChange" class='system-chart-select' popper-class="system-chart-select-option">
+            <el-select v-model="checkMethodRegister" slot="prepend" @change="selectChange" class='system-chart-select' popper-class="system-chart-select-option">
                 <el-option label="近一周注册用户数量" :value="1"></el-option>
                 <el-option label="近一月注册用户数量" :value="2"></el-option>
                 <el-option label="近一年注册用户数量" :value="3"></el-option>
@@ -24,7 +24,7 @@
         </div>
         <!-- 新建团队数量 -->
         <div class='system-chart-item'>
-            <el-select v-model="checkMothodTeam" slot="prepend" @change="selectChange" class='system-chart-select' popper-class="system-chart-select-option">
+            <el-select v-model="checkMethodTeam" slot="prepend" @change="selectChange" class='system-chart-select' popper-class="system-chart-select-option">
                 <el-option label="近一周新建团队数量" :value="1"></el-option>
                 <el-option label="近一月新建团队数量" :value="2"></el-option>
                 <el-option label="近一年新建团队数量" :value="3"></el-option>
@@ -35,7 +35,7 @@
         </div>
         <!-- 资源使用情况 -->
         <div class='system-chart-item'>
-            <el-select v-model="checkMothodResorce" slot="prepend" @change="selectChange" class='system-chart-select' popper-class="system-chart-select-option">
+            <el-select v-model="checkMethodResource" slot="prepend" @change="selectChange" class='system-chart-select' popper-class="system-chart-select-option">
                 <el-option label="近一周资源使用情况" :value="1"></el-option>
                 <el-option label="近一月资源使用情况" :value="2"></el-option>
                 <el-option label="近一年资源使用情况" :value="3"></el-option>
@@ -46,7 +46,7 @@
         </div>
         <!-- 在线用户量及男女比 -->
         <div class='system-chart-item'>
-            <el-select v-model="checkMothodTeam" slot="prepend" class='system-chart-select' popper-class="system-chart-select-option">
+            <el-select v-model="checkMethodTeam" slot="prepend" class='system-chart-select' popper-class="system-chart-select-option">
                 <el-option label="此刻用户在线数量" :value="1"></el-option>
             </el-select>
             <div id='user-online' class='system-chart-area'>
@@ -75,11 +75,11 @@ export default {
     name: "SystemInfo",
     data(){
         return {
-            checkMothodVisit: 3,
-            checkMothodRegister: 2,
-            checkMothodTeam: 1,
-            checkMothodOnline: 1,
-            checkMothodResorce: 3
+            checkMethodVisit: 3,
+            checkMethodRegister: 2,
+            checkMethodTeam: 1,
+            checkMethodOnline: 1,
+            checkMethodResource: 3
         }
     },
     mounted(){
@@ -234,13 +234,6 @@ export default {
     border: none;
 } 
 
-.system-chart-select-option .el-select-dropdown__item:hover{
-    background-color:@support-color-bg;
-}
-
-.system-chart-select-option .selected{
-    color:@main-color;
-}
 /* 修改el-select的样式结束*/
 
 .system-chart-area{

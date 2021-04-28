@@ -30,7 +30,7 @@
                 <el-input type="password" v-model="adminInfo.ensurePassword"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary" @click="submitInfoForm('adminInfo')">提交修改</el-button>
+                <el-button type="primary" @click="submitInfoForm('adminInfo')" class="add-admin-sunbmit-button">提交修改</el-button>
             </el-form-item>
         </el-form>
         </div>
@@ -130,5 +130,9 @@ export default {
     box-shadow: #dddddd 0 0 0.4rem;
     border: 0.1rem solid #dddddd;
     border-radius: 0.4rem;
+}
+
+.add-admin-sunbmit-button{
+    margin-left: 3.5rem;
 }
 </style>

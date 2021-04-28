@@ -6,6 +6,10 @@ export const loginApi = query => {
     return result;
 };
 
+export const sendEmailCodeApi = query => {
+    return Promise.resolve(1);
+};
+
 export const logoutApi = query =>{
     return axios.post('user/logout', query);
 }

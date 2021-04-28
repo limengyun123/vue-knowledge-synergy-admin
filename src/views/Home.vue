@@ -2,7 +2,7 @@
 	<div class='system-layout'>
 		<div id='system-left'>
 			<div class='system-title'>LOGO 知识协同管理端</div>
-			<el-menu router default-active="$route.path" class="system-menu"  :collapse="isCollapse">
+			<el-menu router default-active="$route.path" :collapse="isCollapse">
 				<el-menu-item index="/main" route='/main'>
 					<i class="el-icon-s-home"></i><span slot="title">主页</span>
 				</el-menu-item>
@@ -140,34 +140,6 @@ export default {
 	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 	line-height: 4rem;
 }
-
-/* 修改el-menu样式start */ 
-.system-menu{
-	border:none;
-}
-
-.system-menu .el-menu-item:hover{
-	background-color: inherit;
-	color: @support-color-ps;
-}
-
-.system-menu>.el-submenu:hover{
-	background-color: inherit;
-	color: @support-color-ps ;
-}
-
-.system-menu>.el-submenu .el-submenu__title:hover{
-	background-color: inherit;
-	color: @support-color-ps;
-}
-
-.system-menu .el-menu-item.is-active{
-	background-color: @support-color-bg;
-	color: @support-color-ps;
-	border-left: solid 0.2rem @support-color-ps;
-	margin-left: 0.2rem;
-}
-/* 修改el-menu样式end */ 
 
 .menu-fold-button{
 	line-height: 4rem;

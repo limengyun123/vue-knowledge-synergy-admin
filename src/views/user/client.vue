@@ -36,7 +36,7 @@
                 </el-table-column>
                 <el-table-column fixed="right" label="激活" width="60">
                     <template slot-scope="scope">
-                        <el-switch v-model="scope.row.isActive" @change="changeStatus($event, scope.row)"  active-color="#13ce66" inactive-color="#ff4949"></el-switch>
+                        <el-switch v-model="scope.row.isActive" @change="changeStatus($event, scope.row)" ></el-switch>
                     </template>
                 </el-table-column>
                 <el-table-column fixed="right" label="警告" width="60" align="center">
@@ -66,10 +66,8 @@
                     </div>
                     <div>
                         <el-input type="textarea" v-model="chatContent" class='message-input' placeholder="请在此输入..."></el-input>
-                        <!-- <el-button class="message-send-button" @click="sendMessage">发送</el-button> -->
-                        <ButtonPrimary class="message-send-button" @buttonClick='sendMessage'>
-                            发送
-                        </ButtonPrimary>
+                        <el-button type="primary" class="message-send-button" @click="sendMessage">发送</el-button>
+                        
                     </div>
                 </div>
             </el-drawer>
@@ -83,13 +81,11 @@
 <script>
 import {getUsersApi,sendMessageApi} from '../../api/user';
 import NoData from '../../components/noData';
-import ButtonPrimary from '../../components/buttonPrimary';
 
 export default {
     name: 'Client',
     components:{
         'NoData': NoData,
-        'ButtonPrimary': ButtonPrimary
     },
     data() {
         return {
@@ -202,7 +198,8 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less">
+@import "../../assets/css/common.less";
 
 .user-page{
     padding: 1rem;
@@ -245,13 +242,13 @@ export default {
 }
 
 .user-icon-active{
-    color: #00dd00;
-    background-color: #00dd00;
+    color: @success-color;
+    background-color:  @success-color;
 }
 
 .user-warning{
     font-size: 1.3rem;
-    color: #ffbb00;
+    color: @warning-color;
 }
 
 .message-drawer{
@@ -281,12 +278,6 @@ export default {
     line-height: 1.5rem;
     color: #555555;
     font-size: 0.8rem;
-}
-
-.message-input >>> .el-textarea__inner{
-    resize: none;/* 去掉 textarea 下面拉伸的标志*/
-    height: 5rem;
-    margin: 1rem auto;
 }
 
 .message-send-button{

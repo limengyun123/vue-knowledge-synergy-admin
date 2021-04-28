@@ -191,7 +191,9 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less">
+@import "../../assets/css/common.less";
+
 .resource-page{
     padding: 1rem;
 }
@@ -232,10 +234,10 @@ export default {
 }
 
 .icon-success{
-    color: #00dd00;
+    color: @success-color;
 }
 
 .icon-warning{
-    color: #ffbb00;
+    color: @warning-color;
 }
 </style>

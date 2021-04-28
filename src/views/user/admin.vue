@@ -1,8 +1,6 @@
 <template>
     <div class='admin-page'>
-        <ButtonDefault @buttonClick='jumpToAddAdmin'>
-            添加管理员
-        </ButtonDefault>
+        <el-button @click='jumpToAddAdmin' class='add-admin-button'> 添加管理员 </el-button>
         <div v-if="adminData.length" class="admin-data-show">
             <el-table :data="adminData" class="admin-table">
                 <el-table-column fixed prop="id" label="用户ID" width="80"></el-table-column>
@@ -18,7 +16,7 @@
                 <el-table-column prop="email" label="邮箱" width="180"></el-table-column>
                 <el-table-column fixed="right" label="超级权限" width="120">
                     <template slot-scope="scope">
-                        <el-switch v-model="scope.row.superLevel" @change="changeStatus($event, scope.row)"  active-color="#13ce66" inactive-color="#ff4949"></el-switch>
+                        <el-switch v-model="scope.row.superLevel" @change="changeStatus($event, scope.row)" ></el-switch>
                 </template>
                 </el-table-column>
             </el-table>
@@ -44,13 +42,11 @@
 <script>
 import {getAdminsApi, updateLevelApi} from '../../api/user';
 import NoData from '../../components/noData';
-import ButtonDefault from '../../components/buttonDefault';
 
 export default {
     name: 'Administrator',
     components:{
         'NoData': NoData,
-        'ButtonDefault': ButtonDefault,
     },
     data() {
         return {
@@ -124,6 +120,10 @@ export default {
 
 .admin-page{
     padding: 1rem;
+}
+
+.add-admin-button{
+    margin-left: 1rem;
 }
 
 .admin-data-show{
